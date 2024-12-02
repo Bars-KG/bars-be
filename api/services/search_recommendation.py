@@ -19,7 +19,7 @@ class SearchRecommendationService(Runnable):
         airports = [
             SearchRecommendationDataClass(
                 title=result["label"]["value"],
-                description=result["description"]["value"],
+                description=result["description"]["value"] if "description" in result else None,
                 entity=result["airport"]["value"]
             ) for result in combined_results
         ]
