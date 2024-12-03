@@ -9,7 +9,7 @@ from api.serializers.search_results import SearchResultsSerializer
 from commons.exceptions import BadRequestException
 
 
-class SearchResultsAPIView(APIView):
+class SearchResultsAPI(APIView):
     def get(self, request: Request) -> Response:
         try:
             query_params = parse_search_params(request.GET)
