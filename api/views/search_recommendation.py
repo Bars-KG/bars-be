@@ -9,6 +9,6 @@ class SearchRecommendationAPIView(APIView):
     def get(self, request):
         query_params = parse_search_params(request.GET)
 
-        data = SearchRecommendationService.run(**query_params.model_dump())
+        data = SearchRecommendationService.run(keyword=query_params.keyword)
 
         return Response(SearchRecommendationResponseSerializer(data).data)
