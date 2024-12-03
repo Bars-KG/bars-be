@@ -1,7 +1,7 @@
 from django.urls import path
 
 from api.views.search_recommendation import SearchRecommendationAPIView
-from api.views.search_results import SearchResultsAPIView
+from api.views.search_results import SearchResultsAPI
 
 
 urlpatterns = [
@@ -12,7 +12,7 @@ urlpatterns = [
     ),
     path(
         "search/",
-        SearchResultsAPIView.as_view(),
+        SearchResultsAPI.as_view(),
         name="search-results"
     )
 ]
