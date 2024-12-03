@@ -15,7 +15,7 @@ class GetAirportContinentsService(Runnable):
         if len(local_continent_codes) == 0:
             return ContinentListDataClass(continents=[])
         
-        continent_codes = [item['continent_codes']['value'].split('/')[-1] for item in local_continent_codes]
+        continent_codes = [item['continent_code']['value'].split('/')[-1] for item in local_continent_codes]
         
         continents = [
             ContinentDataClass(
