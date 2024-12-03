@@ -6,7 +6,12 @@ from commons.paginations import BasePaginationDataClass
 
 class SearchResultDataClass(BaseDataClass):
     title: str
+    type: str
     description: Optional[str]
+    country: Optional[str]
+    country_label: Optional[str]
+    city: Optional[str]
+    city_label: Optional[str]
     image_url: Optional[str]
     entity: str
 
