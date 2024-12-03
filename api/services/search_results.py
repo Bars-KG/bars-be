@@ -1,3 +1,5 @@
+from typing import Optional, Any
+
 from api.dataclasses.search_results import SearchResultDataClass, SearchResultsDataClass
 from api.sparqls.search_results import LOCAL_SEARCH_AIRPORTS_RESULTS, REMOTE_SEARCH_AIRPORTS_RESULTS
 
@@ -16,7 +18,7 @@ class SearchResultsService(Runnable):
 
         try:
             remote_results = RemoteStore.query(REMOTE_SEARCH_AIRPORTS_RESULTS, codes=airport_codes)
-        except Exception as e:
+        except Exception:
             remote_results = []
 
         combined_results = combine_query_results(local_results, remote_results, "code", "airport_code")
@@ -30,8 +32,13 @@ class SearchResultsService(Runnable):
         airports = [
             SearchResultDataClass(
                 title=result["label"]["value"],
-                description=result["description"]["value"] if "description" in result else None,
-                image_url=result["image"]["value"] if "image" in result else None,
+                type=result["airport_type_labels"]["value"],
+                description=cls.__get_noneable_value(result, "description"),
+                country=cls.__get_noneable_value(result, "country"),
+                country_label=cls.__get_noneable_value(result, "country_label"),
+                city=cls.__get_noneable_value(result, "city"),
+                city_label=cls.__get_noneable_value(result, "city_label"),
+                image_url=cls.__get_noneable_value(result, "image"),
                 entity=result["airport"]["value"]
             ) for result in paginated_results.queryset
         ]
@@ -42,3 +49,7 @@ class SearchResultsService(Runnable):
             next_page=paginated_results.next_page,
             previous_page=paginated_results.previous_page
         )
+    
+    @classmethod
+    def __get_noneable_value(cls, data: Any, key: str) -> Optional[str]:
+        return data[key]["value"] if key in data else None
