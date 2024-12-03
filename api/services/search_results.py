@@ -11,7 +11,7 @@ from store.store import LocalStore, RemoteStore
 class SearchResultsService(Runnable):
     @classmethod
     def run(cls, keyword: str, limit: int, page: int) -> SearchResultsDataClass:
-        local_results = LocalStore.query(LOCAL_SEARCH_AIRPORTS_RESULTS, keyword=keyword)
+        local_results = LocalStore.query(LOCAL_SEARCH_AIRPORTS_RESULTS, keyword=keyword.lower())
         airport_codes = " ".join([f'"{result["code"]["value"]}"' for result in local_results])
 
         try:
