@@ -18,12 +18,12 @@ urlpatterns = [
         name="search-results"
     ),
     path(
-        "airport/continents/",
+        "airports/continents/",
         GetAirportContinentsAPI.as_view(),
         name="get-airport-continents"
     ),
     path(
-        "airport/continents/<str:continent_code>/",
+        "airports/continents/<str:continent_code>/",
         GetAirportCountriesAPI.as_view(),
         name="get-airport-regions"
     )
