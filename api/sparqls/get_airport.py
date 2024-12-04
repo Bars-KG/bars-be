@@ -79,3 +79,35 @@ SELECT ?runway ?width ?length ?surface ?isLighted ?isClosed ?lowEndId WHERE {{
     }}
 }}
 """
+
+LOCAL_AIRPORT_NAVAIDS = r"""
+SELECT ?airport ?name ?navAidType ?latitude ?longitude ?elevation ?frequency ?magnetic ?usageType ?power WHERE {{
+    BIND(:{code} as ?airport)
+    
+    ?navaids verb:associatedAirport ?airport ;
+    	rdfs:label ?name ;
+    	verb:navAidType ?navAidType .
+    
+    OPTIONAL {{
+        ?navaids verb:geographicLocation ?b1 .
+        ?b1 verb:latitudeDegree ?latitude ;
+        	verb:longitudeDegree ?longitude .
+        OPTIONAL {{
+            ?b1 verb:elevation ?elevation .
+        }}
+    }}
+    OPTIONAL {{
+        ?navaids verb:navigationUsage ?b2 .
+        ?b2 verb:frequencyKhz ?frequency .
+        OPTIONAL {{
+            ?b2 verb:magneticVariation ?magnetic .
+        }}
+        OPTIONAL {{
+            ?b2 verb:usageType ?usageType .
+        }}
+        OPTIONAL {{
+            ?b2 verb:power ?power .
+        }}
+    }}
+}}
+"""
