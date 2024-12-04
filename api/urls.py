@@ -1,15 +1,16 @@
 from django.urls import path
 
+from api.views.get_airport import GetAirportAPI
 from api.views.get_airport_continents import GetAirportContinentsAPI
 from api.views.get_airport_countries import GetAirportCountriesAPI
-from api.views.search_recommendation import SearchRecommendationAPIView
+from api.views.search_recommendation import SearchRecommendationAPI
 from api.views.search_results import SearchResultsAPI
 
 
 urlpatterns = [
     path(
         "search/recommendation/",
-        SearchRecommendationAPIView.as_view(),
+        SearchRecommendationAPI.as_view(),
         name="search-recommendation",
     ),
     path(
@@ -26,5 +27,10 @@ urlpatterns = [
         "airports/continents/<str:continent_code>/",
         GetAirportCountriesAPI.as_view(),
         name="get-airport-regions"
+    ),
+    path(
+        "airports/<str:code>/",
+        GetAirportAPI.as_view(),
+        name="get-airport"
     )
 ]

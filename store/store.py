@@ -3,6 +3,8 @@ from bars.settings import TRIPLESTORE_DATABASES
 
 from SPARQLWrapper import SPARQLWrapper, JSON
 
+from store.iri import get_sparql_prefixes
+
 class Store(ABC):
     @classmethod
     def _init(cls, connection_string):
@@ -24,11 +26,8 @@ class LocalStore(Store):
 
     @classmethod
     def query(cls, query: str, **kwargs) -> list[dict]:
-        query = r"""
-        PREFIX : <http://data.bars-kg.com/entity/>
-        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        PREFIX verb: <http://data.bars-kg.com/verb/>
+        query = fr"""
+        {get_sparql_prefixes()}
 
         """ + query
 
