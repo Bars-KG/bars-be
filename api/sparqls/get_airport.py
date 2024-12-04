@@ -40,3 +40,26 @@ WHERE {{
     }}
 }}
 """
+
+LOCAL_AIRPORT_RUNWAYS = r"""
+SELECT ?runway ?width ?length ?surface ?isLighted ?isClosed ?lowEndId WHERE {{
+    BIND(:{code} as ?a)
+
+    ?a verb:runway ?runway .
+    ?runway verb:isLighted ?isLighted ;
+    	verb:isClosed ?isClosed .
+    
+    OPTIONAL {{
+        ?runway verb:width ?width .
+    }}
+    OPTIONAL {{
+        ?runway verb:length ?length .
+    }}
+    OPTIONAL {{
+        ?runway verb:surface ?surface .
+    }}
+    OPTIONAL {{
+        ?runway verb:lowEndIdentifier ?lowEndId .
+    }}
+}}
+"""

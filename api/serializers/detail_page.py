@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 class DetailFieldDataClass(ReadOnlySerializer):
     type = serializers.CharField()
-    key = serializers.CharField(allow_null=True)
+    label = serializers.CharField(allow_null=True)
     value = serializers.CharField()
     hyperlink = serializers.CharField(allow_null=True)
 
