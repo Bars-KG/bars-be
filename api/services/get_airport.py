@@ -18,7 +18,7 @@ class GetAirportService(Runnable):
         remote_airport_results = RemoteStore.query(REMOTE_AIRPORT_PROPERTIES, code=code)
 
         airport_result = combine_query_results(local_airport_results, remote_airport_results, "gpsCode", "airport_code")[0]
-        # airport_result = local_airport_results[0]
+
         print(airport_result)
 
         detail = airport_detail_builder(airport_result)

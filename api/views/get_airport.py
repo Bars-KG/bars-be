@@ -9,4 +9,3 @@ class GetAirportAPI(APIView):
         data = GetAirportService.run(code)
 
         return Response(DetailPageSerializer(data).data)
-        # return Response()

@@ -3,7 +3,6 @@ from typing import Callable
 from api.dataclasses.detail_page import DetailFieldDataClass
 
 
-# field creators for manual usage outside of builder context
 def section_field(name: str) -> DetailFieldDataClass:
     return DetailFieldDataClass(type="section", value=name)
 
