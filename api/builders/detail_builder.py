@@ -33,8 +33,6 @@ def separator_field() -> DetailFieldDataClass:
 def image_field(image_url: str) -> DetailFieldDataClass:
     return DetailFieldDataClass(type="image", value=image_url)
 
-
-# main builder
 def detail_builder(
     builders: list[Callable[[dict], DetailFieldDataClass]]
 ) -> Callable[[dict], list[DetailFieldDataClass]]:
