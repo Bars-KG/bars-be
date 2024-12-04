@@ -41,6 +41,22 @@ WHERE {{
 }}
 """
 
+REMOTE_AIRPORT_PROPERTIES = r"""
+SELECT DISTINCT ?airport_code ?image ?inception
+WHERE {{
+    BIND("{code}" AS ?airport_code)
+  
+    ?airport wdt:P31/wdt:P279* wd:Q62447 ;
+        wdt:P239 ?airport_code .
+    OPTIONAL {{
+        ?airport wdt:P18 ?image .
+    }}
+    OPTIONAL {{
+        ?airport wdt:P571 ?inception .
+    }}
+}}
+"""
+
 LOCAL_AIRPORT_RUNWAYS = r"""
 SELECT ?runway ?width ?length ?surface ?isLighted ?isClosed ?lowEndId WHERE {{
     BIND(:{code} as ?a)

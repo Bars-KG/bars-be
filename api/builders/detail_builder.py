@@ -31,6 +31,9 @@ def hyperlink_field(
 def separator_field() -> DetailFieldDataClass:
     return DetailFieldDataClass(type="separator")
 
+def image_field(image_url: str) -> DetailFieldDataClass:
+    return DetailFieldDataClass(type="image", value=image_url)
+
 
 # main builder
 def detail_builder(
@@ -69,3 +72,8 @@ def hyperlink_builder(
     return lambda d: hyperlink_field(
         label, d[key]["value"], d[link_key]["value"], value_caster, link_caster
     )
+
+def image_builder(
+    key: str
+) -> Callable[[dict], DetailFieldDataClass]:
+    return lambda d: image_field(d[key]["value"])

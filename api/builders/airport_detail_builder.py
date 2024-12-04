@@ -1,4 +1,11 @@
-from api.builders.detail_builder import detail_builder, hyperlink_builder, literal_builder, section_builder
+from datetime import datetime
+from api.builders.detail_builder import (
+    detail_builder,
+    hyperlink_builder,
+    image_builder,
+    literal_builder,
+    section_builder,
+)
 from api.constants.continents import CONTINENTS
 from store.iri import get_iri_value
 
@@ -6,13 +13,17 @@ from store.iri import get_iri_value
 airport_detail_builder = detail_builder(
     [
         section_builder("Summary"),
+        image_builder("image"),
         literal_builder("Type", "typeLabel"),
+        literal_builder(
+            "Inception Date",
+            "inception",
+            lambda x: datetime.strptime(x, "%Y-%m-%dT%H:%M:%SZ").strftime("%d %B %Y"),
+        ),
         literal_builder("IATA Code", "iataCode"),
         literal_builder("Local Code", "localCode"),
         literal_builder("GPS Code", "gpsCode"),
-        literal_builder(
-            "Scheduled Service", lambda x: "No" if x == "false" else "Yes"
-        ),
+        literal_builder("Scheduled Service", lambda x: "No" if x == "false" else "Yes"),
         section_builder("Geographic Location"),
         literal_builder("Latitude Degree", "latitudeDegree", float),
         literal_builder("Longitude Degree", "longitudeDegree", float),
