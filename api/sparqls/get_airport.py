@@ -36,6 +36,7 @@ WHERE {{
     FILTER NOT EXISTS {{
         ?a rdf:type ?type2 .
         ?type2 rdfs:subClassOf ?type .
+        FILTER(?type2 != ?type)
     }}
 }}
 """
