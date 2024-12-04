@@ -62,3 +62,15 @@ runway_detail_builder = detail_builder(
         literal_builder("Low End ID", "lowEndId"),
     ]
 )
+
+navaid_detail_builder = detail_builder([
+    literal_builder("Name", "name"),
+    literal_builder("Type", "navAidType"),
+    literal_builder("Frequency (KHz)", "frequency"),
+    literal_builder("Magnetic Variation Degree", "magnetic"),
+    literal_builder("Usage Type", "usageType"),
+    literal_builder("Power", "power"),
+    literal_builder("Latitude Degree", "latitude"),
+    literal_builder("Longitude Degree", "longitude"),
+    literal_builder("Elevation", "elevation"),
+])
