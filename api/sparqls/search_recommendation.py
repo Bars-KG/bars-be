@@ -4,7 +4,7 @@ SELECT ?airport ?label ?code WHERE {{
     	rdfs:label ?label ;
         verb:gpsCode ?code .
     
-    FILTER(CONTAINS(LCASE(?label), "{keyword}"))
+    FILTER(CONTAINS(LCASE(?label), LCASE("{keyword}")))
 }}
 LIMIT 5
 """
