@@ -5,7 +5,7 @@ from api.query_params_parser import parse_search_params
 from api.serializers.search_recommendation import SearchRecommendationResponseSerializer
 from api.services.search_recommendation import SearchRecommendationService
 
-class SearchRecommendationAPIView(APIView):
+class SearchRecommendationAPI(APIView):
     def get(self, request):
         query_params = parse_search_params(request.GET)
 
