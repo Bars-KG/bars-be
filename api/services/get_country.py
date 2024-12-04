@@ -1,9 +1,5 @@
 from api.builders.country_detail_builder import country_detail_builder
 from api.dataclasses.detail_page import DetailPageDataClass
-from api.builders.detail_builder import (
-    section_field,
-    separator_field,
-)
 from api.sparqls.get_country import LOCAL_COUNTRY_PROPERTIES, REMOTE_COUNTRY_PROPERTIES
 from commons.runnable import Runnable
 from commons.utils import combine_query_results
