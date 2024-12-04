@@ -3,6 +3,7 @@ from django.urls import path
 from api.views.get_airport import GetAirportAPI
 from api.views.get_airport_continents import GetAirportContinentsAPI
 from api.views.get_airport_countries import GetAirportCountriesAPI
+from api.views.get_country import GetCountryAPI
 from api.views.search_recommendation import SearchRecommendationAPI
 from api.views.search_results import SearchResultsAPI
 
@@ -32,5 +33,10 @@ urlpatterns = [
         "airports/<str:code>/",
         GetAirportAPI.as_view(),
         name="get-airport"
-    )
+    ),
+    path(
+        "countries/<str:code>/",
+        GetCountryAPI.as_view(),
+        name="get-country"
+    ),
 ]
