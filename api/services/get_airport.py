@@ -10,6 +10,7 @@ from store.store import LocalStore
 class GetAirportService(Runnable):
     airport_detail_builder = detail_builder([
         section_builder("Summary"),
+        literal_field("Type", "typeLabel"),
         literal_field("IATA Code", "iataCode"),
         literal_field("Local Code", "localCode"),
         literal_field("GPS Code", "gpsCode"),

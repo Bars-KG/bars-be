@@ -1,12 +1,14 @@
 LOCAL_AIRPORT_PROPERTIES = r"""
-SELECT ?airport ?iataCode ?gpsCode ?localCode ?isScheduledService ?latitude ?longitude ?elevation ?municipality ?countryCode ?country ?regionCode ?region ?continentCode
+SELECT ?airport ?typeLabel ?iataCode ?gpsCode ?localCode ?isScheduledService ?latitude ?longitude ?elevation ?municipality ?countryCode ?country ?regionCode ?region ?continentCode
 WHERE {{
     BIND(:{code} as ?a)
 
     ?a rdf:type :Aerodrome ;
         rdfs:label ?airport ;
     	verb:isScheduledService ?isScheduledService ;
-    	verb:geographicLocation ?b .
+    	verb:geographicLocation ?b ;
+        rdf:type ?type .
+    ?type rdfs:label ?typeLabel .
     ?b verb:latitudeDegree ?latitude ;
     	verb:longitudeDegree ?longitude ;
     	verb:isoCountryCode ?countryCode ;
@@ -29,6 +31,11 @@ WHERE {{
     }}
     OPTIONAL {{
         ?a verb:localCode ?localCode .
+    }}
+
+    FILTER NOT EXISTS {{
+        ?a rdf:type ?type2 .
+        ?type2 rdfs:subClassOf ?type .
     }}
 }}
 """
