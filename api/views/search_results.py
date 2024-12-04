@@ -18,6 +18,7 @@ class SearchResultsAPI(APIView):
 
         data = SearchResultsService.run(
             keyword=query_params.keyword,
+            country=query_params.country,
             limit=query_params.limit,
             page=query_params.page
         )
