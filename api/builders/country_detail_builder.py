@@ -1,5 +1,5 @@
 from datetime import datetime
-from api.builders.detail_builder import detail_builder, image_builder, literal_builder, section_builder
+from api.builders.detail_builder import detail_builder, hyperlink_builder, image_builder, literal_builder, section_builder
 from api.constants.continents import CONTINENTS
 from store.iri import get_iri_value
 
@@ -8,14 +8,14 @@ country_detail_builder = detail_builder(
     [
         section_builder("Summary"),
         image_builder("flagImage"),
-        literal_builder("Capital", "capitalName"),
+        hyperlink_builder("Capital", "capitalName", "capital"),
         literal_builder(
             "Inception Date",
             "inception",
             lambda x: datetime.strptime(x, "%Y-%m-%dT%H:%M:%SZ").strftime("%d %B %Y"),
         ),
-        literal_builder("Head of State", "headOfStateName"),
-        literal_builder("Currency", "currencyName"),
+        hyperlink_builder("Head of State", "headOfStateName", "headOfState"),
+        hyperlink_builder("Currency", "currencyName", "currency"),
         literal_builder(
             "Continent", "continent", lambda x: CONTINENTS[get_iri_value(x)]
         ),

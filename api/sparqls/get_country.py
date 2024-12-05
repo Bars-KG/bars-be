@@ -71,7 +71,7 @@ WHERE {{
 """
 
 REMOTE_COUNTRY_PROPERTIES = r"""
-SELECT DISTINCT ?countryCode ?capitalName ?headOfStateName ?flagImage ?currencyName ?inception
+SELECT DISTINCT ?countryCode ?capitalName ?capital ?headOfStateName ?headOfState ?flagImage ?currencyName ?currency ?inception
 WHERE {{
     BIND("{code}" AS ?countryCode)
   
