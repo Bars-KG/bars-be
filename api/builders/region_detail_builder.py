@@ -13,7 +13,7 @@ region_detail_builder = detail_builder([
     ),
     literal_builder("ISO Region Code", "regionCode"),
     literal_builder("Local Code", "localCode"),
-    literal_builder("Capital", "capitalName"),
+    hyperlink_builder("Capital", "capitalName", "capital"),
     section_builder("Demographic"),
     literal_builder("Area (sq. km.)", "area"),
     literal_builder("Population", "population"),

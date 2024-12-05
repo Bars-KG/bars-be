@@ -6,7 +6,7 @@ from api.builders.detail_builder import (
     literal_builder,
     section_builder,
 )
-from api.constants.continents import CONTINENTS
+from api.constants.continents import CONTINENT_WIKIDATA, CONTINENTS
 from store.iri import get_iri_value
 
 
@@ -41,8 +41,12 @@ airport_detail_builder = detail_builder(
             "regionCode",
             link_caster=lambda x: "/region/" + get_iri_value(x),
         ),
-        literal_builder(
-            "Continent", "continentCode", lambda x: CONTINENTS[get_iri_value(x)]
+        hyperlink_builder(
+            "Continent",
+            "continentCode",
+            "continentCode",
+            lambda x: CONTINENTS[get_iri_value(x)],
+            lambda x: CONTINENT_WIKIDATA[get_iri_value(x)],
         ),
     ]
 )
@@ -63,14 +67,16 @@ runway_detail_builder = detail_builder(
     ]
 )
 
-navaid_detail_builder = detail_builder([
-    literal_builder("Name", "name"),
-    literal_builder("Type", "navAidType"),
-    literal_builder("Frequency (KHz)", "frequency"),
-    literal_builder("Magnetic Variation Degree", "magnetic"),
-    literal_builder("Usage Type", "usageType"),
-    literal_builder("Power", "power"),
-    literal_builder("Latitude Degree", "latitude"),
-    literal_builder("Longitude Degree", "longitude"),
-    literal_builder("Elevation", "elevation"),
-])
+navaid_detail_builder = detail_builder(
+    [
+        literal_builder("Name", "name"),
+        literal_builder("Type", "navAidType"),
+        literal_builder("Frequency (KHz)", "frequency"),
+        literal_builder("Magnetic Variation Degree", "magnetic"),
+        literal_builder("Usage Type", "usageType"),
+        literal_builder("Power", "power"),
+        literal_builder("Latitude Degree", "latitude"),
+        literal_builder("Longitude Degree", "longitude"),
+        literal_builder("Elevation", "elevation"),
+    ]
+)

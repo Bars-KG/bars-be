@@ -27,11 +27,14 @@ def hyperlink_field(
         hyperlink=link_caster(link),
     )
 
+
 def separator_field() -> DetailFieldDataClass:
     return DetailFieldDataClass(type="separator")
 
+
 def image_field(image_url: str) -> DetailFieldDataClass:
     return DetailFieldDataClass(type="image", value=image_url)
+
 
 def detail_builder(
     builders: list[Callable[[dict], DetailFieldDataClass]]
@@ -47,6 +50,7 @@ def detail_builder(
         return result
 
     return build
+
 
 # field builders
 def section_builder(name: str) -> Callable[[dict], DetailFieldDataClass]:
@@ -70,7 +74,6 @@ def hyperlink_builder(
         label, d[key]["value"], d[link_key]["value"], value_caster, link_caster
     )
 
-def image_builder(
-    key: str
-) -> Callable[[dict], DetailFieldDataClass]:
+
+def image_builder(key: str) -> Callable[[dict], DetailFieldDataClass]:
     return lambda d: image_field(d[key]["value"])

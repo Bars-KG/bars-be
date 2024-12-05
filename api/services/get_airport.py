@@ -3,6 +3,7 @@ from api.builders.airport_detail_builder import (
     runway_detail_builder,
     navaid_detail_builder,
 )
+from api.constants.continents import CONTINENT_WIKIDATA
 from api.dataclasses.detail_page import DetailPageDataClass
 from api.builders.detail_builder import (
     section_field,

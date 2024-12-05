@@ -11,7 +11,7 @@ WHERE {{
 """
 
 REMOTE_REGION_PROPERTIES = r"""
-SELECT DISTINCT ?region ?regionCode ?capitalName ?area ?population ?flagImage
+SELECT DISTINCT ?region ?regionCode ?capitalName ?capital ?area ?population ?flagImage
 WHERE {{
     BIND("{code}" AS ?regionCode)
   
