@@ -1,6 +1,12 @@
 from datetime import datetime
-from api.builders.detail_builder import detail_builder, hyperlink_builder, image_builder, literal_builder, section_builder
-from api.constants.continents import CONTINENTS
+from api.builders.detail_builder import (
+    detail_builder,
+    hyperlink_builder,
+    image_builder,
+    literal_builder,
+    section_builder,
+)
+from api.constants.continents import CONTINENT_WIKIDATA, CONTINENTS
 from store.iri import get_iri_value
 
 
@@ -16,8 +22,12 @@ country_detail_builder = detail_builder(
         ),
         hyperlink_builder("Head of State", "headOfStateName", "headOfState"),
         hyperlink_builder("Currency", "currencyName", "currency"),
-        literal_builder(
-            "Continent", "continent", lambda x: CONTINENTS[get_iri_value(x)]
+        hyperlink_builder(
+            "Continent",
+            "continent",
+            "continent",
+            lambda x: CONTINENTS[get_iri_value(x)],
+            lambda x: CONTINENT_WIKIDATA[get_iri_value(x)],
         ),
         section_builder("Demographic"),
         literal_builder("Population", "population"),
